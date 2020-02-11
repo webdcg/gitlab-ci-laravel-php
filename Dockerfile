@@ -72,7 +72,7 @@ ENV COMPOSER_HOME /root/composer
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer selfupdate
-    
+
 WORKDIR /tmp
 
 # Run phpunit installation
@@ -82,6 +82,9 @@ RUN composer require "phpunit/phpunit=7.*" --prefer-source --no-interaction \
 # Run codesniffer installation
 RUN composer require "squizlabs/php_codesniffer=*" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/phpcs /usr/local/bin/phpcs
+
+# Run prestissimo (composer parallel install plugin)
+RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
 
 RUN php --version \
     && composer --version \

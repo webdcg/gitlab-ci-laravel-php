@@ -47,9 +47,7 @@ in addition to those you can already find in the [official PHP image](https://hu
 
 ```bash
 docker login
-docker build --tag=gitlab-ci-laravel-php:7.3 .
 docker build --tag=gitlab-ci-laravel-php:latest .
-docker tag image rlunar/gitlab-ci-laravel-php:latest
 docker tag gitlab-ci-laravel-php:latest rlunar/gitlab-ci-laravel-php:latest
 docker push rlunar/gitlab-ci-laravel-php:latest
 ```
