@@ -44,3 +44,12 @@ in addition to those you can already find in the [official PHP image](https://hu
 
 ## PHPUnit & CodeSniffer
 [PHPUnit](https://phpunit.de/) and [CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) are installed globally in the all images.
+
+```bash
+docker login
+docker build --tag=gitlab-ci-laravel-php:7.3 .
+docker build --tag=gitlab-ci-laravel-php:latest .
+docker tag image rlunar/gitlab-ci-laravel-php:latest
+docker tag gitlab-ci-laravel-php:latest rlunar/gitlab-ci-laravel-php:latest
+docker push rlunar/gitlab-ci-laravel-php:latest
+```

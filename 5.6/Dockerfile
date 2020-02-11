@@ -1,5 +1,5 @@
 FROM php:5.6 
-MAINTAINER Krzysztof Kawalec <kf.kawalec@gmail.com> 
+MAINTAINER Roberto Luna <rluna@webdcg.com> 
 RUN apt-get update && \ 
     DEBIAN_FRONTEND=noninteractive apt-get install -y \ 
         openssh-client \ 

@@ -1,5 +1,5 @@
 FROM php:7.3
-MAINTAINER Krzysztof Kawalec <kf.kawalec@gmail.com>
+MAINTAINER Roberto Luna <rluna@webdcg.com>
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         openssh-client \
@@ -44,7 +44,11 @@ RUN docker-php-ext-install \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap \
     && pecl install imagick \
-    && docker-php-ext-enable imagick
+    && docker-php-ext-enable imagick \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini \
     && echo "date.timezone=Europe/Warsaw" > $PHP_INI_DIR/conf.d/date_timezone.ini
