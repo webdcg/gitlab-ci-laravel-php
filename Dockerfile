@@ -86,8 +86,12 @@ RUN composer require "squizlabs/php_codesniffer=*" --prefer-source --no-interact
 # Run prestissimo (composer parallel install plugin)
 RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
 
+# Run Laravel Envoy (Deployment)
+RUN composer global require "laravel/envoy" --prefer-source --no-interaction
+
 RUN php --version \
     && composer --version \
     && phpunit --version \
     && phpcs --version \
+    && envoy --version \
     && yarn --version
