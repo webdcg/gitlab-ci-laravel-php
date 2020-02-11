@@ -87,7 +87,8 @@ RUN composer require "squizlabs/php_codesniffer=*" --prefer-source --no-interact
 RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
 
 # Run Laravel Envoy (Deployment)
-RUN composer global require "laravel/envoy" --prefer-source --no-interaction
+RUN composer require "laravel/envoy=*" --prefer-source --no-interaction \
+    && ln -s /tmp/vendor/bin/envoy /usr/local/bin/envoy
 
 RUN php --version \
     && composer --version \
