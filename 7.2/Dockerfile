@@ -48,7 +48,7 @@ RUN pecl install -o -f xdebug \
     && docker-php-ext-enable xdebug 
 
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini \
-    && echo "date.timezone=Europe/Warsaw" > $PHP_INI_DIR/conf.d/date_timezone.ini
+    && echo "date.timezone=America/New_York" > $PHP_INI_DIR/conf.d/date_timezone.ini
 
 # NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \

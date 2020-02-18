@@ -51,7 +51,7 @@ RUN docker-php-ext-install \
     && docker-php-ext-enable xdebug
 
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini \
-    && echo "date.timezone=Europe/Warsaw" > $PHP_INI_DIR/conf.d/date_timezone.ini
+    && echo "date.timezone=America/New_York" > $PHP_INI_DIR/conf.d/date_timezone.ini
 
 # NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
@@ -76,18 +76,22 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /tmp
 
 # Run phpunit installation
-RUN composer require "phpunit/phpunit=7.*" --prefer-source --no-interaction \
+RUN composer require "phpunit/phpunit" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/phpunit /usr/local/bin/phpunit
 
 # Run codesniffer installation
-RUN composer require "squizlabs/php_codesniffer=*" --prefer-source --no-interaction \
+RUN composer require "squizlabs/php_codesniffer" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/phpcs /usr/local/bin/phpcs
 
 # Run prestissimo (composer parallel install plugin)
 RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
 
+# Run prestissimo (Easy Coding Standards using CodeSniffer and PHP-CS-Fixer)
+RUN composer global require "symplify/easy-coding-standard" --prefer-source --no-interaction \
+    && ln -s /tmp/vendor/bin/ecs /usr/local/bin/ecs
+
 # Run Laravel Envoy (Deployment)
-RUN composer require "laravel/envoy=*" --prefer-source --no-interaction \
+RUN composer require "laravel/envoy" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/envoy /usr/local/bin/envoy
 
 RUN php --version \
