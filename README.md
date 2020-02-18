@@ -45,6 +45,10 @@ in addition to those you can already find in the [official PHP image](https://hu
 ## PHPUnit & CodeSniffer
 [PHPUnit](https://phpunit.de/) and [CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) are installed globally in the all images.
 
+## Composer plugins
+- [Easy Coding Standard](https://github.com/symplify/easy-coding-standard)
+- [Prestissimo](https://github.com/hirak/prestissimo)
+
 
 ### PHP:latest
 

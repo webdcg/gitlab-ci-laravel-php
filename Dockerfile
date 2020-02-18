@@ -83,16 +83,16 @@ RUN composer require "phpunit/phpunit=8.*" --prefer-source --no-interaction \
 RUN composer require "squizlabs/php_codesniffer" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/phpcs /usr/local/bin/phpcs
 
-# Run prestissimo (composer parallel install plugin)
-RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
-
-# Run ECS (Easy Coding Standards using CodeSniffer and PHP-CS-Fixer)
-RUN composer global require "symplify/easy-coding-standard" --prefer-source --no-interaction \
-    && ln -s /tmp/vendor/bin/ecs /usr/local/bin/ecs
-
 # Run Laravel Envoy (Deployment)
 RUN composer require "laravel/envoy" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/envoy /usr/local/bin/envoy
+
+# Run ECS (Easy Coding Standards using CodeSniffer and PHP-CS-Fixer)
+RUN composer require "symplify/easy-coding-standard" --prefer-source --no-interaction \
+    && ln -s /tmp/vendor/bin/ecs /usr/local/bin/ecs
+
+# Run prestissimo (composer parallel install plugin)
+RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
 
 RUN php --version \
     && composer --version \
