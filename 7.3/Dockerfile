@@ -76,27 +76,30 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /tmp
 
 # Run phpunit installation
-RUN composer require "phpunit/phpunit" --prefer-source --no-interaction \
+RUN composer require "phpunit/phpunit=8.*" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/phpunit /usr/local/bin/phpunit
 
 # Run codesniffer installation
 RUN composer require "squizlabs/php_codesniffer" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/phpcs /usr/local/bin/phpcs
 
-# Run prestissimo (composer parallel install plugin)
-RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
-
-# Run prestissimo (Easy Coding Standards using CodeSniffer and PHP-CS-Fixer)
-RUN composer global require "symplify/easy-coding-standard" --prefer-source --no-interaction \
+# Run ECS (Easy Coding Standards using CodeSniffer and PHP-CS-Fixer)
+RUN composer require "symplify/easy-coding-standard" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/ecs /usr/local/bin/ecs
 
 # Run Laravel Envoy (Deployment)
 RUN composer require "laravel/envoy" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/envoy /usr/local/bin/envoy
 
+# Run prestissimo (composer parallel install plugin)
+RUN composer global require "hirak/prestissimo" --prefer-source --no-interaction
+
 RUN php --version \
     && composer --version \
     && phpunit --version \
     && phpcs --version \
     && envoy --version \
+    && ecs --version \
+    && node --version \
+    && npm --version \
     && yarn --version

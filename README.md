@@ -54,8 +54,8 @@ in addition to those you can already find in the [official PHP image](https://hu
 
 ```bash
 docker login
-docker build --tag=gitlab-ci-laravel-php:latest .
-docker tag gitlab-ci-laravel-php:latest rlunar/gitlab-ci-laravel-php:latest
+docker build --tag=gitlab-ci-laravel-php:latest . && \
+docker tag gitlab-ci-laravel-php:latest rlunar/gitlab-ci-laravel-php:latest && \
 docker push rlunar/gitlab-ci-laravel-php:latest
 ```
 
@@ -63,7 +63,25 @@ docker push rlunar/gitlab-ci-laravel-php:latest
 
 ```bash
 docker login
-docker build --tag=gitlab-ci-laravel-php:7.3 .
-docker tag gitlab-ci-laravel-php:7.3 rlunar/gitlab-ci-laravel-php:7.3
+docker build --tag=gitlab-ci-laravel-php:7.3 . && \
+docker tag gitlab-ci-laravel-php:7.3 rlunar/gitlab-ci-laravel-php:7.3 && \
 docker push rlunar/gitlab-ci-laravel-php:7.3
+```
+
+### PHP:7.2
+
+```bash
+docker login
+docker build --tag=gitlab-ci-laravel-php:7.2 . && \
+docker tag gitlab-ci-laravel-php:7.2 rlunar/gitlab-ci-laravel-php:7.2 && \
+docker push rlunar/gitlab-ci-laravel-php:7.2
+```
+
+### PHP:7.1
+
+```bash
+docker login
+docker build --tag=gitlab-ci-laravel-php:7.1 . && \
+docker tag gitlab-ci-laravel-php:7.1 rlunar/gitlab-ci-laravel-php:7.1 && \
+docker push rlunar/gitlab-ci-laravel-php:7.1
 ```
