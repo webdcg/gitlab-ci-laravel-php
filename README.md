@@ -59,6 +59,15 @@ docker tag gitlab-ci-laravel-php:latest rlunar/gitlab-ci-laravel-php:latest && \
 docker push rlunar/gitlab-ci-laravel-php:latest
 ```
 
+### PHP:7.4
+
+```bash
+docker login
+docker build --tag=gitlab-ci-laravel-php:7.4 . && \
+docker tag gitlab-ci-laravel-php:7.4 rlunar/gitlab-ci-laravel-php:7.4 && \
+docker push rlunar/gitlab-ci-laravel-php:7.4
+```
+
 ### PHP:7.3
 
 ```bash
