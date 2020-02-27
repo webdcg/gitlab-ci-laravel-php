@@ -94,3 +94,12 @@ docker build --tag=gitlab-ci-laravel-php:7.1 . && \
 docker tag gitlab-ci-laravel-php:7.1 rlunar/gitlab-ci-laravel-php:7.1 && \
 docker push rlunar/gitlab-ci-laravel-php:7.1
 ```
+
+### PHP:7.0
+
+```bash
+docker login
+docker build --tag=gitlab-ci-laravel-php:7.0 . && \
+docker tag gitlab-ci-laravel-php:7.0 rlunar/gitlab-ci-laravel-php:7.0 && \
+docker push rlunar/gitlab-ci-laravel-php:7.0
+```
