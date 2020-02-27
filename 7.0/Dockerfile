@@ -29,6 +29,11 @@ RUN docker-php-ext-install \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
     && docker-php-ext-install ldap
 
+# Redis
+RUN pecl install -o -f redis \
+    && rm -rf /tmp/* \
+    && docker-php-ext-enable redis
+
 # Xdebug
 RUN pecl install xdebug-2.5.0 \
     && rm -rf /tmp/* \
