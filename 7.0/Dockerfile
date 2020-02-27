@@ -2,37 +2,37 @@ FROM php:7.0
 MAINTAINER Roberto Luna <rluna@webdcg.com>
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        openssh-client \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libmcrypt-dev \
-        libpng12-dev \
-        libcurl4-openssl-dev \
-        libldap2-dev \
-        curl \
-        libtidy* \
-        git \
+    openssh-client \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libmcrypt-dev \
+    # libpng12-dev \
+    libcurl4-openssl-dev \
+    libldap2-dev \
+    curl \
+    libtidy* \
+    git \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
-        mcrypt \
-        mbstring \
-        curl \
-        json \
-        pdo_mysql \
-        exif \
-        tidy \
-        zip \
-    	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-        && docker-php-ext-install gd \
-        && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
-	&& docker-php-ext-install ldap
+    mcrypt \
+    mbstring \
+    curl \
+    json \
+    pdo_mysql \
+    exif \
+    tidy \
+    zip \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd \
+    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
+    && docker-php-ext-install ldap
 
 # Xdebug
-RUN pecl install -o -f xdebug \ 
-    && rm -rf /tmp/* \ 
-    && docker-php-ext-enable xdebug 
+RUN pecl install xdebug-2.5.0 \
+    && rm -rf /tmp/* \
+    && docker-php-ext-enable xdebug
 
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini \
     && echo "date.timezone=America/New_York" > $PHP_INI_DIR/conf.d/date_timezone.ini
@@ -48,8 +48,8 @@ ENV COMPOSER_HOME /root/composer
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-	&& composer selfupdate
-    
+    && composer selfupdate
+
 WORKDIR /tmp
 
 # Run phpunit installation
