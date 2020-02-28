@@ -65,7 +65,12 @@ RUN composer require "phpunit/phpunit=5.*" --prefer-source --no-interaction \
 RUN composer require "squizlabs/php_codesniffer=*" --prefer-source --no-interaction \
     && ln -s /tmp/vendor/bin/phpcs /usr/local/bin/phpcs
 
+# Run Laravel Envoy (Deployment)
+RUN composer require "laravel/envoy" --prefer-source --no-interaction \
+    && ln -s /tmp/vendor/bin/envoy /usr/local/bin/envoy
+
 RUN php --version \
     && composer --version \
     && phpunit --version \
-    && phpcs --version
+    && phpcs --version \
+    && envoy --version
