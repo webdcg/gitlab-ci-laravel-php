@@ -21,6 +21,8 @@ RUN apt-get update \
     git \
     rsync \
     unzip \
+    redis-server \
+    libxslt-dev \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
@@ -43,6 +45,7 @@ RUN docker-php-ext-install \
     && docker-php-ext-install intl \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap \
+    && docker-php-ext-install xsl \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && pecl install redis \
